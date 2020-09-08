@@ -13,7 +13,7 @@ class Scene2 extends Phaser.Scene
 
   preload()
   {
-    this.load.image('testingImage','assets/images/olive.jpg');
+    this.load.image('testingImage','assets/images/olive1.jpg');
   }
 
   create()

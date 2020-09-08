@@ -112,6 +112,8 @@ class Piece extends Phaser.GameObjects.Image
       tempGameObject.y+= gameObject.getData('infoY') * (objImgs[gameObject.getData('infoX')][gameObject.getData('infoY')].height/cropInfo.yMax);
       tempGameObject.y+= (objImgs[gameObject.getData('infoX')][gameObject.getData('infoY')].height/cropInfo.yMax)/2;
 
+      
+
 
       console.log((tempX+offset)+"x+"+offset+" "+(tempY+offset)+"y+"+offset);
       console.log((tempX-offset)+"x-"+offset+" " +(tempY-offset)+"y-"+offset);
