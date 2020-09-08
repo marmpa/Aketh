@@ -46,40 +46,43 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
       var tmpSecondPointX=tmpX+(3*Math.cos(Math.PI/3));
       var tmpSecondPointY=tmpY+(3*Math.sin(Math.PI/3));
       console.log(info.peg[0]);
-      if(info.peg[0].localeCompare("i")==0)
+
+
+      if(info.peg.localeCompare("i")==0)
       {//intrude
         console.log("more inside");
-        this.geometryMask.lineTo(tmpSecondPointX,tmpSecondPointY);
-        this.geometryMask.moveTo(tmpSecondPointX,tmpSecondPointY);
+        //this.geometryMask.lineTo(tmpSecondPointX,tmpSecondPointY);
+        //this.geometryMask.moveTo(tmpSecondPointX,tmpSecondPointY);
         tmpSecondPointX=tmpSecondPointX+((2*bitLength)/3);
         //sets the line to
-        this.geometryMask.lineTo(tmpSecondPointX,tmpSecondPointY);
-        this.geometryMask.moveTo(tmpSecondPointX,tmpSecondPointY);
+        //this.geometryMask.lineTo(tmpSecondPointX,tmpSecondPointY);
+        //this.geometryMask.moveTo(tmpSecondPointX,tmpSecondPointY);
 
         tmpX=tmpX+bitLength;
         //tmpy stays the same
-        this.geometryMask.lineTo(tmpX,tmpY);
-        this.geometryMask.moveTo(tmpX,tmpY);
+        //this.geometryMask.lineTo(tmpX,tmpY);
+        //this.geometryMask.moveTo(tmpX,tmpY);
 
         tmpX=tmpX+bitLength;
         //tmpY stays the same
-        this.geometryMask.lineTo(tmpX,tmpY);
-        this.geometryMask.moveTo(tmpX,tmpY);
+        //this.geometryMask.lineTo(tmpX,tmpY);
+        //this.geometryMask.moveTo(tmpX,tmpY);
 
 
       }
-      else if(info.peg[0].localeCompare("e"))
+      else if(info.peg.localeCompare("e"))
       {//extrude
+        this.geometryMask.fillCircle(xLength*info.x+(xLength)/2,yLength*info.y, xLength/6,yLength/6);
 
       }
     }
     if(1 in info.sides)
     {//checks side 1
-      if(info.peg[0].localeCompare("i")==0)
+      if(info.peg.localeCompare("i")==0)
       {
-
+        this.geometryMask.fillCircle(xLength*(info.x+1),yLength*info.y+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg[0].localeCompare("e")==0)
+      else if(info.peg.localeCompare("e")==0)
       {
         
       }
@@ -87,11 +90,11 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     }
     if(2 in info.sides)
     {
-      if(info.peg[0].localeCompare("i")==0)
+      if(info.peg.localeCompare("i")==0)
       {
-
+        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg[0].localeCompare("e")==0)
+      else if(info.peg.localeCompare("e")==0)
       {
         
       }
@@ -99,35 +102,35 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     }
     if(3 in info.sides)
     {
-      if(info.peg[0].localeCompare("i")==0)
+      if(info.peg.localeCompare("i")==0)
       {
-
+        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg[0].localeCompare("e")==0)
+      else if(info.peg.localeCompare("e")==0)
       {
         
       }
 
     }
     //tmpX stays the same
-    tmpY=tmpY+yLength;
-    this.geometryMask.lineTo(tmpX,tmpY);
-    this.geometryMask.moveTo(tmpX,tmpY);
+    //tmpY=tmpY+yLength;
+    //this.geometryMask.lineTo(tmpX,tmpY);
+    //this.geometryMask.moveTo(tmpX,tmpY);
 
-    tmpX=tmpX-xLength;
-    //tmpY stays the same
-    this.geometryMask.lineTo(tmpX,tmpY);
-    this.geometryMask.lineTo(tmpX,tmpY-yLength);
-    this.geometryMask.moveTo(tmpX,tmpY);
+    //tmpX=tmpX-xLength;
+    ////tmpY stays the same
+    //this.geometryMask.lineTo(tmpX,tmpY);
+    //this.geometryMask.lineTo(tmpX,tmpY-yLength);
+   // this.geometryMask.moveTo(tmpX,tmpY);
 
     //tmpX stays same
-    tmpY=tmpY-yLength;
-    this.geometryMask.lineTo(tmpX,tmpY);
-    this.geometryMask.lineTo(tmpX+xLength,tmpY);
-    this.geometryMask.moveTo(tmpX,tmpY);
+   // tmpY=tmpY-yLength;
+   // this.geometryMask.lineTo(tmpX,tmpY);
+   // this.geometryMask.lineTo(tmpX+xLength,tmpY);
+   // this.geometryMask.moveTo(tmpX,tmpY);
 
-    this.geometryMask.closePath();
-    this.geometryMask.fillPath();//completes shape
+   // this.geometryMask.closePath();
+   // this.geometryMask.fillPath();//completes shape
     img.setMask(this);
   }
 

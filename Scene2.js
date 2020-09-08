@@ -139,6 +139,7 @@ class Scene2 extends Phaser.Scene
     function(pointer,gameObject,dragX,dragY)
     {
       Piece.drag(pointer,gameObject,dragX,dragY,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
+      //PiceBit.drag(pointer,gameObject,dragX,dragY,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
     },
     this
     );
