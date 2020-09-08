@@ -26,7 +26,7 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
 
 
 
-    var xLength=(img.width/info.xMax);
+    var xLength=(img.width/info.xMax);//Length and position 
     var yLength=(img.height/info.yMax);
     var bitLength=(img.width/info.xMax)/3;//The length of the small extra bit
 
@@ -70,7 +70,7 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
 
 
       }
-      else if(info.peg.localeCompare("e"))
+      else if(info.peg.localeCompare("e")==-1)
       {//extrude
         this.geometryMask.fillCircle(xLength*info.x+(xLength)/2,yLength*info.y, xLength/6,yLength/6);
 
@@ -82,7 +82,7 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
       {
         this.geometryMask.fillCircle(xLength*(info.x+1),yLength*info.y+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg.localeCompare("e")==0)
+      else if(info.peg.localeCompare("e")==-2)
       {
         
       }
@@ -94,9 +94,9 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
       {
         this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg.localeCompare("e")==0)
+      else if(info.peg.localeCompare("e")==-3)
       {
-        
+        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
 
     }
@@ -106,9 +106,9 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
       {
         this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg.localeCompare("e")==0)
+      else if(info.peg.localeCompare("e")==-4)
       {
-        
+        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
 
     }
