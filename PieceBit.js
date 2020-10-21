@@ -26,7 +26,7 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
 
 
 
-    var xLength=(img.width/info.xMax);//Length and position 
+    var xLength=(img.width/info.xMax);//Length and position
     var yLength=(img.height/info.yMax);
     var bitLength=(img.width/info.xMax)/3;//The length of the small extra bit
 
@@ -48,7 +48,7 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
       console.log(info.peg[0]);
 
 
-      if(info.peg.localeCompare("i")==0)
+      if(info.peg[i].localeCompare("i")==0)
       {//intrude
         console.log("more inside");
         //this.geometryMask.lineTo(tmpSecondPointX,tmpSecondPointY);
@@ -84,7 +84,7 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
       }
       else if(info.peg.localeCompare("e")==-2)
       {
-        
+
       }
 
     }
