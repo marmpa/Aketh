@@ -6,9 +6,6 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     super(scene,scene.make.graphics());
     console.log(this.geometryMask);
 
-
-
-
   }
 
 
@@ -36,41 +33,25 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     //tmpX=tmpX+xLength;
     //tmpY same
     //this.geometryMask.moveTo(tmpX,tmpY);
+
+    if(info.peg==10)
+    {
+      img.setCrop();
+      this.setInverseAlpha();
+    }
+
     if(0 in info.sides)
     {//checks which sides is interval
-      console.log("inside");
-      this.geometryMask.lineTo(tmpX+bitLength,tmpY);//Moves to part where it start to shape
-      tmpX=tmpX+bitLength;
-      tmpY=tmpY;
-
-      var tmpSecondPointX=tmpX+(3*Math.cos(Math.PI/3));
-      var tmpSecondPointY=tmpY+(3*Math.sin(Math.PI/3));
-      console.log(info.peg[0]);
 
 
-      if(info.peg[i].localeCompare("i")==0)
+
+      if(info.peg==9)
       {//intrude
-        console.log("more inside");
-        //this.geometryMask.lineTo(tmpSecondPointX,tmpSecondPointY);
-        //this.geometryMask.moveTo(tmpSecondPointX,tmpSecondPointY);
-        tmpSecondPointX=tmpSecondPointX+((2*bitLength)/3);
-        //sets the line to
-        //this.geometryMask.lineTo(tmpSecondPointX,tmpSecondPointY);
-        //this.geometryMask.moveTo(tmpSecondPointX,tmpSecondPointY);
-
-        tmpX=tmpX+bitLength;
-        //tmpy stays the same
-        //this.geometryMask.lineTo(tmpX,tmpY);
-        //this.geometryMask.moveTo(tmpX,tmpY);
-
-        tmpX=tmpX+bitLength;
-        //tmpY stays the same
-        //this.geometryMask.lineTo(tmpX,tmpY);
-        //this.geometryMask.moveTo(tmpX,tmpY);
+        //setInve
 
 
       }
-      else if(info.peg.localeCompare("e")==-1)
+      else if(info.peg==10)
       {//extrude
         this.geometryMask.fillCircle(xLength*info.x+(xLength)/2,yLength*info.y, xLength/6,yLength/6);
 
@@ -78,11 +59,11 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     }
     if(1 in info.sides)
     {//checks side 1
-      if(info.peg.localeCompare("i")==0)
+      if(info.peg==9)
       {
         this.geometryMask.fillCircle(xLength*(info.x+1),yLength*info.y+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg.localeCompare("e")==-2)
+      else if(info.peg==10)
       {
 
       }
@@ -90,11 +71,11 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     }
     if(2 in info.sides)
     {
-      if(info.peg.localeCompare("i")==0)
+      if(info.peg==9)
       {
         this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg.localeCompare("e")==-3)
+      else if(info.peg==10)
       {
         this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
@@ -102,11 +83,11 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     }
     if(3 in info.sides)
     {
-      if(info.peg.localeCompare("i")==0)
+      if(info.peg==9)
       {
         this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
-      else if(info.peg.localeCompare("e")==-4)
+      else if(info.peg==10)
       {
         this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }

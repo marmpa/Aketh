@@ -37,8 +37,9 @@ class Scene2 extends Phaser.Scene
     let bitTable=[];
 
 
+    //Set all the puzzle piece values for extrution or intrution
     for(var j=0;j<xMax;j++)
-    {//set possible combinations
+    {//set possible combinations for what the puzzle piece looks like
       bitTable[j]=[];
       for(var k=0;k<yMax;k++)
       {
@@ -80,8 +81,34 @@ class Scene2 extends Phaser.Scene
           }
         }
         //set the max values a thing can have(a bit in this case)
+
+        var reverseNum=[9,10];
+        if(j==0 && k==0)
+        {//checks if the first thing and if correct then assign 0
+          bitTable[j][k].peg=0;
+        }
+        else if(j==0)
+        {
+          bitTable[j][k].peg=reverseNum[bitTable[j][k-1].peg];
+        }
+        else if(k==0)
+        {
+          bitTable[j][k].peg=reverseNum[bitTable[j-1][k].peg];
+        }
+        else
+        {
+          bitTable[j][k].peg=reverseNum[bitTable[j][k-1].peg];
+        }
+
+
+        console.log(bitTable[j][k].peg+" la"+j+" "+k);
+
       }
     }
+
+
+
+    //.........................
 
     console.log(bitTable);
     for (var i = 0; i < xMax; i++)
@@ -106,10 +133,10 @@ class Scene2 extends Phaser.Scene
             info.location.y=y;
             info.sides=[];
 
-            info.sides[0]=0;
-            info.peg=[];
-            info.peg[0]="i";
-            objImgs[i][y].setCrop();
+            info.sides=bitTable[i][y];
+            //info.peg=[];
+            info.peg=bitTable[i][y].peg;
+            //objImgs[i][y].setCrop();
             var testMask= new PieceBit(this,objImgs[i][y],info);
             testMask.InfoToPieceBit(info,objImgs[i][y]);
           }
