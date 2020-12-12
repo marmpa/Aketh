@@ -5,7 +5,7 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
 
     super(scene,scene.make.graphics());
     console.log(this.geometryMask);
-
+    //scene.add.existing(this);
   }
 
 
@@ -17,8 +17,10 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     var tmpX=(img.x-(img.width/2))+(img.width/info.xMax)*info.location.x;
     var tmpY=(img.y-(img.height/2))+(img.width/info.xMax)*info.location.y;
     this.geometryMask.moveTo(tmpX,tmpY);
+    this.geometryMask.x=tmpX;
+    this.geometryMask.y=tmpY;
     //moves it to correct location
-    console.log("hello bit");
+    console.log(this);
 
 
 
@@ -27,20 +29,29 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
     var yLength=(img.height/info.yMax);
     var bitLength=(img.width/info.xMax)/3;//The length of the small extra bit
 
-    this.geometryMask.fillRect(info.x*xLength,info.y*yLength,xLength,yLength);
 
+    //this.geometryMask.fillRect(0,0,50,50);
+    console.log(info.location.x*xLength+" " +info.location.y*yLength+" "+xLength+" "+yLength+" PETROOS");
     //this.geometryMask.lineTo(tmpX+xLength,tmpY);
     //tmpX=tmpX+xLength;
     //tmpY same
     //this.geometryMask.moveTo(tmpX,tmpY);
-
-    if(info.peg==10)
+    //img.setCrop();
+    //this.setInvertAlpha();
+    if(info.peg==9)
     {
+      this.geometryMask.fillRect(info.location.x*xLength,info.location.y*yLength,xLength,yLength);
       img.setCrop();
-      this.setInverseAlpha();
+      //this.setInvertAlpha();
+    }
+    else if(info.peg==10)
+    {
+      this.setInvertAlpha();
     }
 
-    if(0 in info.sides)
+    console.log(info.sides+" bgazeis story");
+
+    if(info.sides.includes(0))
     {//checks which sides is interval
 
 
@@ -53,44 +64,51 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
       }
       else if(info.peg==10)
       {//extrude
-        this.geometryMask.fillCircle(xLength*info.x+(xLength)/2,yLength*info.y, xLength/6,yLength/6);
+      //  this.geometryMask.fillCircle(xLength*info.x+(xLength)/2,yLength*info.y, xLength/6,yLength/6);
 
       }
-    }
-    if(1 in info.sides)
+    this.geometryMask.fillCircle(xLength*(info.location.x)+xLength/2,yLength*info.location.y,xLength/8,yLength/8);
+  }
+    if(info.sides.includes(1))
     {//checks side 1
       if(info.peg==9)
-      {
-        this.geometryMask.fillCircle(xLength*(info.x+1),yLength*info.y+(yLength)/2,xLength/6,yLength/6);
+      {console.log("bro ma sister");
+
       }
       else if(info.peg==10)
-      {
-
+      {console.log("bro ma brother");
+        //this.geometryMask.fillCircle(xLength*(info.x+1),yLength*info.y+(yLength)/2,xLength/6,yLength/6);
       }
 
+      this.geometryMask.fillCircle(xLength*(info.location.x+1),yLength*info.location.y+(yLength)/2,xLength/8,yLength/8);
+
     }
-    if(2 in info.sides)
+    if(info.sides.includes(2))
     {
       if(info.peg==9)
       {
-        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
+      //  this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
       else if(info.peg==10)
       {
-        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
+        //this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
 
+      this.geometryMask.fillCircle(xLength*(info.location.x)+xLength/2,yLength*(info.location.y+1),xLength/8,yLength/8);
+
     }
-    if(3 in info.sides)
+    if(info.sides.includes(3))
     {
       if(info.peg==9)
       {
-        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
+      //  this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
       else if(info.peg==10)
       {
-        this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
+        //this.geometryMask.fillCircle(xLength*(info.x),yLength*(info.y+1)+(yLength)/2,xLength/6,yLength/6);
       }
+
+      this.geometryMask.fillCircle(xLength*(info.location.x)+(xLength)/2,yLength*info.location.y+(yLength)/2,xLength/8,yLength/8);
 
     }
     //tmpX stays the same
@@ -110,9 +128,17 @@ class PieceBit extends Phaser.Display.Masks.GeometryMask
    // this.geometryMask.lineTo(tmpX+xLength,tmpY);
    // this.geometryMask.moveTo(tmpX,tmpY);
 
-   // this.geometryMask.closePath();
-   // this.geometryMask.fillPath();//completes shape
+   this.geometryMask.closePath();
+    this.geometryMask.fillPath();//completes shape
+
+   var maskI = this.geometryMask.createGeometryMask();
+
     img.setMask(this);
+  }
+
+  drag(pointer,gameObject,dragX,dragY,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax})
+  {
+
   }
 
 

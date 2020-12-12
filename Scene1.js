@@ -10,9 +10,12 @@ class Scene1 extends Phaser.Scene
     //this.add.text(20,20,"Text Loading page");
     this.txt = [];
 
-    this.txt.one=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY,"Menu").setInteractive();
-    this.txt.two=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+80,"ΕΥΚΟΛΟ").setInteractive();
-    this.txt.three=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+120,"ΔΥΣΚΟΛΟ").setInteractive();
+    //var txt = scene.add.text(x, y, 'hello', { fontFamily: 'Arial', fontSize: 64, color: '#00ff00' });
+
+
+    this.txt.one=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY,"Menu",{ fontFamily: 'Arial'}).setInteractive();
+    this.txt.two=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+80,"ΕΥΚΟΛΟ",{ fontFamily: 'Arial'}).setInteractive();
+    this.txt.three=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+120,"ΔΥΣΚΟΛΟ",{ fontFamily: 'Arial'}).setInteractive();
 
 
     this.txt.two.on('pointerup',

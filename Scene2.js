@@ -26,6 +26,7 @@ class Scene2 extends Phaser.Scene
 
     let objImgs = [];
     let objRec = [];
+    
 
     //var rt = this.add.renderTexture(0,0,50,50);
     var xMax=this.difficultyNum;
@@ -35,16 +36,19 @@ class Scene2 extends Phaser.Scene
     tmpRect.setStrokeStyle(2, 0xFF0000);
 
     let bitTable=[];
-
+    let pegTable=[];
 
     //Set all the puzzle piece values for extrution or intrution
     for(var j=0;j<xMax;j++)
     {//set possible combinations for what the puzzle piece looks like
       bitTable[j]=[];
+      pegTable[j]=[];
       for(var k=0;k<yMax;k++)
       {
         //Table to set {0:0,1:1,2:2,3:3}
         bitTable[j][k]=[0,1,2,3];
+        pegTable[j][k]=0;
+
         let tmpBitTable=[];
         //Removes values from table where not applicable
         if(j==0)
@@ -82,26 +86,35 @@ class Scene2 extends Phaser.Scene
         }
         //set the max values a thing can have(a bit in this case)
 
-        var reverseNum=[9,10];
+        var reverseNum=[0,0,0,0,0,0,0,0,0,9,10];
         if(j==0 && k==0)
         {//checks if the first thing and if correct then assign 0
-          bitTable[j][k].peg=0;
+          pegTable[j][k]=9;
         }
         else if(j==0)
         {
-          bitTable[j][k].peg=reverseNum[bitTable[j][k-1].peg];
+          console.log("giatrios"+j);
+          console.log(k-1);
+          console.log(bitTable[j][k-1]);
+          pegTable[j][k]=reverseNum[pegTable[j][k-1]];
         }
         else if(k==0)
         {
-          bitTable[j][k].peg=reverseNum[bitTable[j-1][k].peg];
+          console.log("papas"+(j-1));
+          console.log(k);
+          console.log(pegTable[j-1][(k)]);
+          pegTable[j][k]=reverseNum[pegTable[j-1][k]];
         }
         else
         {
-          bitTable[j][k].peg=reverseNum[bitTable[j][k-1].peg];
+          console.log("dikigoros"+(j));
+          console.log("dikigoros"+(k));
+          console.log(pegTable[j-1][k]);
+          pegTable[j][k]=reverseNum[pegTable[j][k-1]];
         }
 
 
-        console.log(bitTable[j][k].peg+" la"+j+" "+k);
+        console.log(pegTable[j][k]+" la"+j+" "+k);
 
       }
     }
@@ -134,11 +147,13 @@ class Scene2 extends Phaser.Scene
             info.sides=[];
 
             info.sides=bitTable[i][y];
+            console.log(info.sides+"BERBEBE");
+            console.log(info.peg+"BKBKBKBKK");
             //info.peg=[];
-            info.peg=bitTable[i][y].peg;
+            info.peg=pegTable[i][y];
             //objImgs[i][y].setCrop();
             var testMask= new PieceBit(this,objImgs[i][y],info);
-            testMask.InfoToPieceBit(info,objImgs[i][y]);
+            testMask.InfoToPieceBit(info,objImgs[i][y]);//creates the piece and adds it
           }
           else
           {
