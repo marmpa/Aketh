@@ -133,7 +133,11 @@ class Piece extends Phaser.GameObjects.Image
         //console.log(objImgs[gameObject.getData('infoX')][gameObject.getData('infoY')].width/cropInfo.xMax);
         //console.log(objImgs[gameObject.getData('infoX')][gameObject.getData('infoY')].height/cropInfo.yMax);
         objImgs[gameObject.getData('infoX')][gameObject.getData('infoY')].setDepth(0);
+
+        return 1;
       }
+
+      return 0;
 
 
 

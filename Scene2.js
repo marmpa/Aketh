@@ -9,11 +9,17 @@ class Scene2 extends Phaser.Scene
   init(data)
   {
     this.difficultyNum=data.difficulty;
+    this.sumF=this.difficultyNum*this.difficultyNum;
+  }
+
+  static getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
   }
 
   preload()
   {
-    this.load.image('testingImage','assets/images/olive1.jpg');
+    var mathR = Scene2.getRandomInt(4);
+    this.load.image('testingImage','assets/images/olive'+mathR+'.jpg');
   }
 
   create()
@@ -191,8 +197,13 @@ class Scene2 extends Phaser.Scene
     );
     this.input.on('dragend',function(pointer,gameObject)
     {
-      Piece.dragend(pointer,gameObject,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
+      this.sumF-=Piece.dragend(pointer,gameObject,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
       PieceBit.dragend(pointer,gameObject,this,objPieceBit,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
+
+      if(this.sumF==0)
+      {
+        this.scene.start("Scene1Games");
+      }
     },
     this
     );
