@@ -26,7 +26,8 @@ class Scene2 extends Phaser.Scene
 
     let objImgs = [];
     let objRec = [];
-    
+    let objPieceBit = [];
+
 
     //var rt = this.add.renderTexture(0,0,50,50);
     var xMax=this.difficultyNum;
@@ -43,6 +44,7 @@ class Scene2 extends Phaser.Scene
     {//set possible combinations for what the puzzle piece looks like
       bitTable[j]=[];
       pegTable[j]=[];
+
       for(var k=0;k<yMax;k++)
       {
         //Table to set {0:0,1:1,2:2,3:3}
@@ -68,7 +70,7 @@ class Scene2 extends Phaser.Scene
             bitTable[j][k].splice(index,1);
           }
         }
-        if(j==xMax)
+        if(j==xMax-1)
         {
           var index = bitTable[j][k].indexOf(1);//The index becomes
           if(index>-1)
@@ -76,7 +78,7 @@ class Scene2 extends Phaser.Scene
             bitTable[j][k].splice(index,1);
           }
         }
-        if(k==yMax)
+        if(k==yMax-1)
         {
           var index = bitTable[j][k].indexOf(2);
           if(index>-1)
@@ -84,9 +86,10 @@ class Scene2 extends Phaser.Scene
             bitTable[j][k].splice(index,1);
           }
         }
+
         //set the max values a thing can have(a bit in this case)
 
-        var reverseNum=[0,0,0,0,0,0,0,0,0,9,10];
+        var reverseNum=[0,0,0,0,0,0,0,0,0,10,9];
         if(j==0 && k==0)
         {//checks if the first thing and if correct then assign 0
           pegTable[j][k]=9;
@@ -118,6 +121,7 @@ class Scene2 extends Phaser.Scene
 
       }
     }
+    console.log(bitTable+" marioooo");
 
 
 
@@ -128,11 +132,11 @@ class Scene2 extends Phaser.Scene
     {
         objImgs[i]=[];
         objRec[i]=[];
+        objPieceBit[i]=[];
         for (var y = 0; y < yMax; y++)
         {//does this for all pieces
 
-          if(i==0 && y==0)
-          {
+
             objImgs[i][y]= new Piece(this,{x:i,y:y,xMax:xMax,yMax:yMax});
 
 
@@ -152,10 +156,10 @@ class Scene2 extends Phaser.Scene
             //info.peg=[];
             info.peg=pegTable[i][y];
             //objImgs[i][y].setCrop();
-            var testMask= new PieceBit(this,objImgs[i][y],info);
-            testMask.InfoToPieceBit(info,objImgs[i][y]);//creates the piece and adds it
-          }
-          else
+            objPieceBit[i][y]= new PieceBit(this,objImgs[i][y],info);
+            objPieceBit[i][y].InfoToPieceBit(info,objImgs[i][y]);//creates the piece and adds it
+            //objRec[i][y] = new Phaser.Geom.Rectangle(i*(objImgs[i][y].width/xMax),y*(objImgs[i][y].height/yMax),objImgs[i][y].width/xMax-5,objImgs[i][y].height/yMax-5);
+          if(false)
           {
 
             objImgs[i][y]= new Piece(this,{x:i,y:y,xMax:xMax,yMax:yMax});
@@ -181,13 +185,14 @@ class Scene2 extends Phaser.Scene
     function(pointer,gameObject,dragX,dragY)
     {
       Piece.drag(pointer,gameObject,dragX,dragY,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
-      //PiceBit.drag(pointer,gameObject,dragX,dragY,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
+      PieceBit.drag(pointer,gameObject,dragX,dragY,this,objPieceBit,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
     },
     this
     );
     this.input.on('dragend',function(pointer,gameObject)
     {
       Piece.dragend(pointer,gameObject,this,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
+      PieceBit.dragend(pointer,gameObject,this,objPieceBit,objImgs,{x:i,y:y,xMax:xMax,yMax:yMax});
     },
     this
     );
