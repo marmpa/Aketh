@@ -12,10 +12,11 @@ class Scene1 extends Phaser.Scene
 
     //var txt = scene.add.text(x, y, 'hello', { fontFamily: 'Arial', fontSize: 64, color: '#00ff00' });
 
+    this.txt.zero=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY-70,"ΠΑΣΕΛ",{ fontFamily: 'Arial'}).setOrigin(0.5);
 
-    this.txt.one=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY,"Menu",{ fontFamily: 'Arial'}).setInteractive();
-    this.txt.two=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+80,"ΕΥΚΟΛΟ",{ fontFamily: 'Arial'}).setInteractive();
-    this.txt.three=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+120,"ΔΥΣΚΟΛΟ",{ fontFamily: 'Arial'}).setInteractive();
+    this.txt.one=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY,"Menu",{ fontFamily: 'Arial'}).setOrigin(0.5).setInteractive();
+    this.txt.two=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+80,"ΕΥΚΟΛΟ",{ fontFamily: 'Arial'}).setOrigin(0.5).setInteractive();
+    this.txt.three=this.add.text(this.cameras.main.centerX,this.cameras.main.centerY+120,"ΔΥΣΚΟΛΟ",{ fontFamily: 'Arial'}).setOrigin(0.5).setInteractive();
 
 
     this.txt.two.on('pointerup',
@@ -31,6 +32,7 @@ class Scene1 extends Phaser.Scene
     },this);
 
 
+    this.txt.zero.setFontSize(90)
     this.txt.one.setFontSize(80);
     this.txt.two.setFontSize(40);
     this.txt.three.setFontSize(40);

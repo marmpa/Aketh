@@ -25,10 +25,13 @@ class Scene2 extends Phaser.Scene
   create()
   {
     //var graphics = this.add.graphics();
-    this.add.text(20,20,"Giaaa");
+    //this.add.text(20,20,"Giaaa");
 
 
-    //var test = this.add.image(300,300,"testingImage");
+    var test = this.add.image(30,100,"testingImage");
+    test.setDisplayOrigin(0.5);
+    test.setDisplaySize(150,150);
+
 
     let objImgs = [];
     let objRec = [];
